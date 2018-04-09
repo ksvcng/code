@@ -1,0 +1,49 @@
+or any numeric digit you can get the actual value by subtracting out the ascii value of '0'
+
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+#include <iostream>
+#include <cstring>
+
+int main()
+{
+  char charArray[] = "10101010";
+  int intArray[strlen(charArray)];
+  for(int idx = 0; idx < strlen(charArray); idx++)
+  {
+    intArray[idx] = charArray[idx] - '0';
+  }
+}
+
+
+
+
+
+I have a string that contains what ever the user has input
+
+string userstr = "";
+cout << "Please enter a string ";
+getline (cin, userstr);
+
+for(int i=0;i<userstr.length();i++){
+    myarray[i] = userstr[i] - '0';
+}
+
+
+
+
+
+
+
+
+

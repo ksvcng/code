@@ -1,0 +1,208 @@
+variable size array in c++;
+
+int* a = NULL;   // Pointer to int, initialize to nothing.
+int n;           // Size needed for array
+cin >> n;        // Read in the size
+a = new int[n];  // Allocate n ints and save ptr in a.
+for (int i=0; i<n; i++) {
+    a[i] = 0;    // Initialize all elements to zero.
+}
+. . .  // Use a as a normal array
+delete [] a;  // When done, free memory pointed to by a.
+a = NULL;     // Clear a to prevent using invalid memory reference.
+
+
+
+// Driver program
+int main()
+{
+   string str = "geeksforgeeks";
+   reverseStr(str);
+   cout << str;
+   return 0;
+}
+
+int main()
+{
+   string str = "geeksforgeeks";
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+   // Reverse str[beign..end]
+   reverse(str.begin(),str.end());
+    
+   cout << str;
+   return 0;
+}
+
+void reverseStr(string &str)
+{
+    int n = str.length();
+ 
+    // Swap character starting from two
+    // corners
+    for (int i=0; i<n/2; i++)
+       swap(str[i], str[n-i-1]);
+}
+
+
+
+Example
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+// string::substr
+#include <iostream>
+#include <string>
+
+int main ()
+{
+  std::string str="We think in generalities, but we live in details.";
+                                           // (quoting Alfred N. Whitehead)
+
+  std::string str2 = str.substr (3,5);     // "think"
+
+  std::size_t pos = str.find("live");      // position of "live" in str
+
+  std::string str3 = str.substr (pos);     // get from "live" to the end
+
+  std::cout << str2 << ' ' << str3 << '\n';
+
+  return 0;
+}
+Edit & Run
+
+
+Output:
+think live in details.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+CodeChef submission 15565791 (C++14) plaintext list. Status: AC, problem CHEFDICE, contest LTIME52. By jimmy51997 (jimmy51997), 2017-09-30 21:07:30.
+#include <bits/stdc++.h>
+ 
+using namespace std;
+ 
+ 
+ 
+int main()
+{
+    int tc ;
+    cin>>tc ;
+    while(tc--){
+        int n ;
+        cin>>n ;
+        int a[n] ;
+        bool pb[7][7] ;
+        for(int i = 0 ; i< n ; i++) cin>>a[i] ;
+        for(int i = 0 ; i< 7 ; i++)
+            for(int j = 0 ; j< 7 ; j++)
+             pb[i][j] = true ;
+        bool x = true ;
+        for(int i = 0 ; i< n-1 ; i++) {
+        pb[a[i]][a[i+1]] = false ;
+        pb[a[i+1]][a[i]] = false ;
+        if(a[i] == a[i+1] ) x = false ;
+        }
+        for(int i = 1 ; i< 7 ; i++){
+            pb[i][i] = false ;
+            int cnt = 0 ;
+            for(int j = 1 ; j< 7 ; j++){
+                if(!pb[i][j]) cnt++ ;
+            }
+            if(cnt == 6){ x = false ; break ;}
+        }
+        if(!x) cout<<-1<<endl ;
+        else{
+            int fa[7] ;
+            bool av = false ;
+            for(int i = 1 ; i< 7 ; i++){
+             for(int j = 1 ; j< 7 ; j++){
+              for(int k = 1 ; k< 7 ; k++){
+               for(int l = 1 ; l< 7 ; l++){
+                for(int m = 1 ; m< 7 ; m++){
+                  for(int p = 1 ; p< 7 ; p++){
+                    int temp[7] ;
+                    temp[1] = i,temp[2] = j , temp[3] = k , temp[4] = l,temp[5] = m,temp[6] = p ;
+                    bool correct = true ;
+                    for(int d = 1 ; d< 7 ; d++)
+                    if(!pb[d][temp[d]] || temp[temp[d]] != d){correct = false ; break ;}
+                    if(correct){
+                        av = true ;
+                        for(int d = 1 ; d < 7 ; d++)
+                         fa[d] = temp[d] ;
+                    }
+                    if(av) break ;
+                  }
+                  if(av) break ;
+                }
+                if(av) break ;
+               }
+               if(av)break ;
+              }
+              if(av)break ;
+             }
+             if(av) break ;
+            }
+            if(av){
+            for(int i = 1 ; i< 7 ; i++)
+                cout<<fa[i]<<" " ;
+            cout<<endl ;
+            }
+            else{
+                cout<<-1<<endl ;
+            }
+        }
+    }
+    return 0;
+}

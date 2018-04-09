@@ -1,0 +1,82 @@
+#include<bits/stdc++.h>
+using namespace std;
+int main()
+{
+    long long t,k,n,arr[10000],i,sum1,sum2,var,des;
+    cin>>t;
+    while(t--)
+    {
+        cin>>k>>n;
+        des=n*(n+1)/2;
+        if((des-k)%2!=0)
+        {
+            cout<<"impossible";
+            continue;
+        }
+        var=n;sum1=sum2=0;
+        while(var>2)
+        {
+            if(var!=k)
+            {
+                if(sum1<=sum2)
+                {
+                    sum1+=var;
+                    arr[var]=1;
+                }
+                else
+                {
+                    sum2+=var;
+                    arr[var]=0;
+                }
+            }
+            var--;
+        }
+        if(sum1<sum2)
+        {
+            if(k!=2)
+            {
+                sum1+=2;
+                    arr[2]=1;
+            }
+        }
+        else
+        {
+            if(k!=2)sum2+=2;
+            arr[2]=0;
+        }
+        if(sum1<sum2)
+        {
+            if(k!=1)sum1+=1;
+            arr[1]=1;
+        }
+        else
+        {
+            if(k!=1)sum2+=1;
+            arr[1]=0;
+        }
+        while(sum1!=sum2){
+        if(sum1>sum2)
+        {
+            arr[n]=0;
+            arr[n-1]=1;
+            sum1--;
+            sum2++;
+        }
+        else
+        {
+            arr[n-2]=1;
+            arr[n-3]=0;
+            sum1++;
+            sum2--;
+        }
+        }
+        for(i=1;i<=n;i++)
+        {
+            if(i==k)cout<<2;
+            else cout<<arr[i];
+        }
+        if(sum1!=sum2)cout<<33333333333;
+        cout<<endl;
+    }
+
+}
